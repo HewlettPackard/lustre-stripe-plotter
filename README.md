@@ -19,6 +19,7 @@ Some notes:
 - Non-complex layouts aren't understood. You can convert simple layouts to complex by adding and deleting a mirror:
 
   lfs mirror extend -N1 myfile; lfs mirror delete --mirror-id 2 myfile
+- If objects are not yet allocated for a component, they are displayed in gray.
   
 Example of mirrored DoM PFL file:
   ![mirrored_pfl_orig](https://media.github.hpe.com/user/38993/files/f72bf8e5-3b9d-4c37-ae00-51321a6fb1f6)
