@@ -1,0 +1,53 @@
+#[root@cslmo4800 nzr]# lfs setstripe -E 256K -L mdt -E 2M -c 1 -S 1M -p flash -E -1 -c 8 -S 4M -p disk pfl_default
+  lcm_layout_gen:    4
+  lcm_mirror_count:  1
+  lcm_entry_count:   3
+  component0:
+    lcme_id:             1
+    lcme_mirror_id:      0
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   262144
+    sub_layout:
+      lmm_stripe_count:  0
+      lmm_stripe_size:   262144
+      lmm_pattern:       mdt
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 0
+      lmm_pool:          disk
+
+  component1:
+    lcme_id:             2
+    lcme_mirror_id:      0
+    lcme_flags:          init
+    lcme_extent.e_start: 262144
+    lcme_extent.e_end:   2097152
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 2
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 2
+        l_fid:     0x100020000:0x103bf5a3:0x0
+
+  component2:
+    lcme_id:             3
+    lcme_mirror_id:      0
+    lcme_flags:          0
+    lcme_extent.e_start: 2097152
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  2
+      lmm_stripe_size:   4194304
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: -1
+      lmm_pool:          disk
+      lmm_objects:
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfdd:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2af1:0x0

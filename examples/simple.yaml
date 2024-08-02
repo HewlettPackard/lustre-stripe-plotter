@@ -1,0 +1,26 @@
+#lfs setstripe -S 2M -c -1 widestripe
+#[root@cslmo4800 nzr]# lfs getstripe -y widestripe
+  lcm_layout_gen:    2
+  lcm_mirror_count:  1
+  lcm_entry_count:   1
+  component0:
+    lcme_id:             65537
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  4
+      lmm_stripe_size:   2097152
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 3
+      lmm_objects:
+      - l_ost_idx: 3
+        l_fid:     0x100030000:0x103c166f:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfdf:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2af3:0x0
+      - l_ost_idx: 2
+        l_fid:     0x100020000:0x103c0c8e:0x0

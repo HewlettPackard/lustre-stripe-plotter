@@ -1,0 +1,51 @@
+#lfs setstripe -E 128M -z 64M -c 2 -S 4M --pool disk -E -1 -c 8 -S 8M --pool disk pflspill2
+#[root@cslmo4800 nzr]# lfs getstripe -y pflspill2
+  lcm_layout_gen:    3
+  lcm_mirror_count:  1
+  lcm_entry_count:   3
+  component0:
+    lcme_id:             1
+    lcme_mirror_id:      0
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   67108864
+    sub_layout:
+      lmm_stripe_count:  2
+      lmm_stripe_size:   4194304
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 0
+      lmm_pool:          disk
+      lmm_objects:
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfea:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2afe:0x0
+
+  component1:
+    lcme_id:             2
+    lcme_mirror_id:      0
+    lcme_flags:          extension
+    lcme_extent.e_start: 67108864
+    lcme_extent.e_end:   134217728
+    sub_layout:
+      lmm_stripe_count:  0
+      lmm_extension_size: 67108864
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: -1
+      lmm_pool:          disk
+
+  component2:
+    lcme_id:             3
+    lcme_mirror_id:      0
+    lcme_flags:          0
+    lcme_extent.e_start: 134217728
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  2
+      lmm_stripe_size:   8388608
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: -1
+      lmm_pool:          disk

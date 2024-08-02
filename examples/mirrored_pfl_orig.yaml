@@ -1,0 +1,81 @@
+  
+  # [rutman@c-lmo1004 rutman]$ lfs getstripe -y pfl/testfile
+  lcm_layout_gen:    6
+  lcm_mirror_count:  2
+  lcm_entry_count:   4
+  component0:
+    lcme_id:             65537
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   262144
+    sub_layout:
+      lmm_stripe_count:  0
+      lmm_stripe_size:   262144
+      lmm_pattern:       mdt
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 0
+
+  component1:
+    lcme_id:             65538
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 262144
+    lcme_extent.e_end:   2097152
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 1
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x2908:0x0
+
+  component2:
+    lcme_id:             65539
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 2097152
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  4
+      lmm_stripe_size:   4194304
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 3
+      lmm_pool:          disk
+      lmm_objects:
+      - l_ost_idx: 3
+        l_fid:     0x100030000:0x42:0x0
+      - l_ost_idx: 5
+        l_fid:     0x100050000:0x42:0x0
+      - l_ost_idx: 2
+        l_fid:     0x100020000:0x42:0x0
+      - l_ost_idx: 4
+        l_fid:     0x100040000:0x42:0x0
+
+  component3:
+    lcme_id:             131073
+    lcme_mirror_id:      2
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  4
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 9
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 9
+        l_fid:     0x100090000:0x6c2:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x29e4:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x2909:0x0
+      - l_ost_idx: 8
+        l_fid:     0x100080000:0x702:0x0
+

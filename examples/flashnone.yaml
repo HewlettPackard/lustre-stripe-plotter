@@ -1,0 +1,37 @@
+#[root@cslmo4800 nzr]# lfs getstripe -y comp_flashnone
+  lcm_layout_gen:    2
+  lcm_mirror_count:  2
+  lcm_entry_count:   2
+  component0:
+    lcme_id:             65537
+    lcme_mirror_id:      1
+    lcme_flags:          init,prefer
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 2
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 2
+        l_fid:     0x100020000:0xb255a8:0x0
+
+  component1:
+    lcme_id:             131074
+    lcme_mirror_id:      2
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 1
+      lmm_pool:          disk
+      lmm_objects:
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0xedc71ce:0x0

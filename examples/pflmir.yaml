@@ -1,0 +1,63 @@
+# lfs setstripe -N -E 1M -L mdt -E eof --component-flags=prefer -p flash -N -E 10M -c 1 -p disk -E eof -c -1 -S 8M pflmir
+# [root@cslmo4800 nzr]# lfs getstripe -y pflmir
+  lcm_layout_gen:    5
+  lcm_mirror_count:  2
+  lcm_entry_count:   4
+  component0:
+    lcme_id:             65537
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   1048576
+    sub_layout:
+      lmm_stripe_count:  0
+      lmm_stripe_size:   1048576
+      lmm_pattern:       mdt
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 0
+      lmm_pool:          disk
+
+  component1:
+    lcme_id:             65538
+    lcme_mirror_id:      1
+    lcme_flags:          prefer
+    lcme_extent.e_start: 1048576
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: -1
+      lmm_pool:          flash
+
+  component2:
+    lcme_id:             131075
+    lcme_mirror_id:      2
+    lcme_flags:          init,stale
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   10485760
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 1
+      lmm_pool:          disk
+      lmm_objects:
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2afa:0x0
+
+  component3:
+    lcme_id:             131076
+    lcme_mirror_id:      2
+    lcme_flags:          stale
+    lcme_extent.e_start: 10485760
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  2
+      lmm_stripe_size:   8388608
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: -1
+      lmm_pool:          disk

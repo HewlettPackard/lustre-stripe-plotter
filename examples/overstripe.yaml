@@ -1,0 +1,61 @@
+# 1217  lfs setstripe -C 20 --pool disk overstripe
+# 1221  lfs mirror extend -N1 overstripe
+# 1223  lfs mirror delete --mirror-id 2  overstripe
+#[root@cslmo4800 nzr]# lfs getstripe -y overstripe
+  lcm_layout_gen:    2
+  lcm_mirror_count:  1
+  lcm_entry_count:   1
+  component0:
+    lcme_id:             65537
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  20
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0,overstriped
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 1
+      lmm_pool:          disk
+      lmm_objects:
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2aff:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfeb:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b00:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfec:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b01:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfed:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b02:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfee:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b03:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dfef:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b04:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dff0:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b05:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dff1:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b06:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dff2:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b07:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dff3:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x278c2b08:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x2765dff4:0x0
