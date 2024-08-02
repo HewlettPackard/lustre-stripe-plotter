@@ -16,3 +16,5 @@ Some notes:
 - Component ID labels are #<id>
 - lcme_id labels are id<id>
 - The size of the first object after a DoM component shoud be drawn smaller by DoM size. I didn't bother to fix this.
+  
+  ![mirrored_pfl_orig](https://media.github.hpe.com/user/38993/files/f72bf8e5-3b9d-4c37-ae00-51321a6fb1f6)
