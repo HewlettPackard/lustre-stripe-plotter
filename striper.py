@@ -11,11 +11,41 @@ from matplotlib.ticker import MultipleLocator, MaxNLocator, FuncFormatter
 import seaborn as sns
 import random
 
+def convert_simple_yaml(data):
+  """ Old v1 single-component
+  """
+
+  if 'lmm_layout_gen' not in data:
+    print("Error: Not a stripe YAML file -- getstripe -y?")
+    return None
+
+  component_data = {
+    'component_id': "component0",
+    'lcme_extent': {'e_start': 0, 'e_end': 'EOF'},
+    'lcme_id': 0,
+    'lcme_flags': 0,
+    'sub_layout': data
+  }
+  mirrors = {}
+  mirrors[1] = {'lcme_mirror_id': 1, 'components': []}
+  mirrors[1]['components'].append(component_data)
+
+  # Create the corrected YAML structure
+  corrected_data = {
+      'lcm_layout_gen': data.get('lmm_layout_gen'),
+      'lcm_mirror_count': 1,
+      'lcm_entry_count': 1,
+      'mirrors': list(mirrors.values())
+  }
+  return corrected_data
+
 def convert_yaml(data):
   """ Converts misformatted lfs getstripe YAML to correct YAML
   """
 
-  # Extract top-level information
+  if 'lcm_layout_gen' not in data:
+    return convert_simple_yaml(data)
+
   lcm_layout_gen = data.pop('lcm_layout_gen')
   lcm_mirror_count = data.pop('lcm_mirror_count')
   lcm_entry_count = data.pop('lcm_entry_count')

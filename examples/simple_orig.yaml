@@ -1,0 +1,25 @@
+#simple, non-complexified
+# lfs setstripe -S 2M -c -1 widestripe
+#[rutman@c-lmo1050 rutman]$ lfs getstripe -y widestripe
+lmm_stripe_count:  8
+lmm_stripe_size:   2097152
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 5
+lmm_objects:
+      - l_ost_idx: 5
+        l_fid:     0x100050000:0x76de8b:0x0
+      - l_ost_idx: 7
+        l_fid:     0x100070000:0xafc3db6:0x0
+      - l_ost_idx: 0
+        l_fid:     0x100000000:0x48d3f31:0x0
+      - l_ost_idx: 3
+        l_fid:     0x100030000:0x48e7a6e:0x0
+      - l_ost_idx: 1
+        l_fid:     0x100010000:0x76fa24:0x0
+      - l_ost_idx: 4
+        l_fid:     0x100040000:0x76b561:0x0
+      - l_ost_idx: 6
+        l_fid:     0x100060000:0xb0aa05b:0x0
+      - l_ost_idx: 2
+        l_fid:     0x100020000:0x76d46d:0x0
