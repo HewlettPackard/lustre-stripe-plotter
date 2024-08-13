@@ -16,9 +16,6 @@ Some notes:
 - Component ID labels are #<id>
 - lcme_id labels are id<id>
 - The size of the first object after a DoM component shoud be drawn smaller by DoM size. I didn't bother to fix this.
-- Non-complex layouts aren't understood. You can convert simple layouts to complex by adding and deleting a mirror:
-
-  lfs mirror extend -N1 myfile; lfs mirror delete --mirror-id 2 myfile
 - If objects are not yet allocated for a component, they are displayed in gray.
   
 Example of mirrored DoM PFL file:
