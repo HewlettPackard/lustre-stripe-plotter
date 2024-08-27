@@ -19,6 +19,4 @@ Some notes:
 - The size of the first object after a DoM component shoud be drawn smaller by \<DoM size\>. I didn't bother to fix this.
   
 Example of mirrored DoM PFL file:
-  ![mirrored_pfl_orig](https://media.github.hpe.com/user/38993/files/f72bf8e5-3b9d-4c37-ae00-51321a6fb1f6)
-
-See https://rndwiki-pro.its.hpecorp.net/display/LUSTRE/Modern+Lustre+Striping for more information on Lustre striping.
+  ![mirrored_pfl_orig](examples/mirpfldom.jpg)
