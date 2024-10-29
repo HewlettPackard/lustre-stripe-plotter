@@ -20,7 +20,6 @@ def convert_simple_yaml(data):
     return None
 
   component_data = {
-    'component_id': "component0",
     'lcme_extent': {'e_start': 0, 'e_end': 'EOF'},
     'lcme_id': 0,
     'lcme_flags': 0,
@@ -50,16 +49,29 @@ def convert_yaml(data):
   lcm_mirror_count = data.pop('lcm_mirror_count')
   lcm_entry_count = data.pop('lcm_entry_count')
 
+
   # Group components by lcme_mirror_id
   mirrors = {}
-  for component_name, component_data in data.items():
-    mirror_id = component_data.pop('lcme_mirror_id')
-    component_data['component_id'] = component_name
-    component_data['lcme_extent'] = {'e_start': component_data.pop('lcme_extent.e_start'),
-                                'e_end': component_data.pop('lcme_extent.e_end')}
-    if mirror_id not in mirrors:
-      mirrors[mirror_id] = {'lcme_mirror_id': mirror_id, 'components': []}
-    mirrors[mirror_id]['components'].append(component_data)
+  if 'components' not in data:
+    # pre-2.16
+    for _, component_data in data.items():
+      mirror_id = component_data.pop('lcme_mirror_id')
+      component_data['lcme_extent'] = {'e_start': component_data.pop('lcme_extent.e_start'),
+                                  'e_end': component_data.pop('lcme_extent.e_end')}
+      if mirror_id not in mirrors:
+        mirrors[mirror_id] = {'lcme_mirror_id': mirror_id, 'components': []}
+      mirrors[mirror_id]['components'].append(component_data)
+  else:
+    # 2.16 LU-15565 added 'componenets' array form
+    components = data.pop('components')
+    for component_data in components:
+      mirror_id = component_data.pop('lcme_mirror_id')
+      print("\ncomponent: ", component_data)
+      component_data['lcme_extent'] = {'e_start': component_data.pop('lcme_extent.e_start'),
+                                  'e_end': component_data.pop('lcme_extent.e_end')}
+      if mirror_id not in mirrors:
+        mirrors[mirror_id] = {'lcme_mirror_id': mirror_id, 'components': []}
+      mirrors[mirror_id]['components'].append(component_data)
 
   # Create the corrected YAML structure
   corrected_data = {
@@ -75,10 +87,10 @@ def parse_yaml(data):
   """ Parse stripe YAML into components
   """
 
-  # Check if mirrors key exists
+  # Sanity check
   if 'mirrors' not in data:
       print("Error: YAML file missing 'mirrors' key")
-      return None  # Or handle the missing key in another way
+      return None
   
   components = []
   for mirror_data in data['mirrors']:
@@ -237,7 +249,7 @@ if __name__ == "__main__":
   print(yaml.dump(data))
   components = parse_yaml(data)
   if components == None:
-      print("Error: can't parse striping")
+      print("Error: can't parse components")
       exit(1)
   plt = draw_extent_diagram(components)
   filename = get_filename_without_extension(yaml_file) + ".jpg"
