@@ -1,0 +1,120 @@
+lcm_layout_gen:    7
+lcm_mirror_count:  1
+lcm_entry_count:   4
+components:
+  - lcme_id:             1
+    lcme_mirror_id:      0
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   131072
+    sub_layout:
+      lmm_stripe_count:  0
+      lmm_stripe_size:   131072
+      lmm_pattern:       mdt
+      lmm_layout_gen:    65535
+      lmm_stripe_offset: 0
+  - lcme_id:             2
+    lcme_mirror_id:      0
+    lcme_flags:          init
+    lcme_extent.e_start: 131072
+    lcme_extent.e_end:   134217728
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   131072
+      lmm_pattern:       raid0
+      lmm_layout_gen:    65535
+      lmm_stripe_offset: 2
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f1:0x0
+  - lcme_id:             4
+    lcme_mirror_id:      0
+    lcme_flags:          init
+    lcme_extent.e_start: 134217728
+    lcme_extent.e_end:   34359738368
+    sub_layout:
+      lmm_stripe_count:  32
+      lmm_stripe_size:   131072
+      lmm_pattern:       raid0,overstriped
+      lmm_layout_gen:    65535
+      lmm_stripe_offset: 2
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f2:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c414:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f3:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c415:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f4:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c416:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f5:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c417:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f6:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c418:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f7:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c419:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f8:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c41a:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44f9:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c41b:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44fa:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c41c:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44fb:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c41d:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44fc:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c41e:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44fd:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c41f:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44fe:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c420:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa44ff:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c421:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa4500:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c422:0x0
+      - l_ost_idx: 2
+        l_fid:     0x300007930:0xfa4501:0x0
+      - l_ost_idx: 3
+        l_fid:     0x3400061c0:0xf4c423:0x0
+  - lcme_id:             5
+    lcme_mirror_id:      0
+    lcme_flags:          extension
+    lcme_extent.e_start: 34359738368
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  0
+      lmm_extension_size: 67108864
+      lmm_pattern:       raid0,overstriped
+      lmm_layout_gen:    0
+      lmm_stripe_offset: -1
+      lmm_pool:          flash
+

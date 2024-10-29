@@ -156,7 +156,7 @@ def draw_extent_diagram(components):
     # Mirrored files start counting at 0
     mirror = max(mirror, 1) - 1
     if end == 'EOF':
-       end = maxext
+        end = maxext
     color = compcolors[i % len(compcolors)]
     rect = patches.Rectangle((start, mirror), end - start, 0.8, linewidth=1, edgecolor=color, facecolor=color)
     ax.add_patch(rect)
@@ -170,31 +170,36 @@ def draw_extent_diagram(components):
         ax.text((start + end) / 2, mirror + 0.17, label2, ha='center')
 
     # Plot stripes inside component
-    stripe_width = component['stripe_size']
-    assert(stripe_width > 0)
-    stripe_start = start
-    #print(i, start, end, stripe_width, component['eofend'], maxext)
-    # Don't draw individual stripes if too tiny
-    if (stripe_width > end / 100) and ('stripes' in component):
-        olabel = True
-        stripes = len(component['stripes'])
-        while (stripe_start < end):
-          for i in range(component['count']):
-              #print(i, stripes)
-              if i < stripes:
-                  stripe = component['stripes'][i]
-                  color = stripecolors[stripe['l_ost_idx'] % len(stripecolors)]
-              else:
-                  color = 'gray'
-                  olabel= False
-              stripe_rect = patches.Rectangle((stripe_start, mirror + 0.2), stripe_width, 0.6, linewidth=0.5, edgecolor='black', facecolor=color)
-              ax.add_patch(stripe_rect)
-              if olabel:
-                  ax.text(stripe_start + stripe_width/2, mirror + 0.6, f"{stripe['l_ost_idx']:04x}", ha='center', rotation=90)
-              stripe_start += stripe_width
-              if stripe_start >= end:
-                  break
-          olabel = False
+    if ('stripes' in component):
+        stripe_width = component['stripe_size']
+        assert(stripe_width > 0)
+        #print(i, start, end, stripe_width, component['eofend'], maxext)
+        # Don't draw individual stripes if too tiny
+        if (stripe_width < end / 100):
+            stripe_rect = patches.Rectangle((start, mirror + 0.2), end, 0.6, linewidth=0.5, edgecolor='black', facecolor='#e7c98d')
+            ax.add_patch(stripe_rect)
+            ax.text((start + end)/2, mirror + 0.6, f"{int(end/stripe_width)} stripes", ha='center')
+        else:
+            stripe_start = start
+            olabel = True
+            stripes = len(component['stripes'])
+            while (stripe_start < end):
+                for i in range(component['count']):
+                    #print(i, stripes)
+                    if i < stripes:
+                        stripe = component['stripes'][i]
+                        color = stripecolors[stripe['l_ost_idx'] % len(stripecolors)]
+                    else:
+                        color = 'gray'
+                        olabel= False
+                    stripe_rect = patches.Rectangle((stripe_start, mirror + 0.2), stripe_width, 0.6, linewidth=0.5, edgecolor='black', facecolor=color)
+                    ax.add_patch(stripe_rect)
+                    if olabel:
+                        ax.text(stripe_start + stripe_width/2, mirror + 0.6, f"{stripe['l_ost_idx']:04x}", ha='center', rotation=90)
+                    stripe_start += stripe_width
+                    if stripe_start >= end:
+                        break
+            olabel = False
 
   ax.set_yticks([])
   ax.set_xlabel("Extent")
