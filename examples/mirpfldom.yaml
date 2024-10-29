@@ -1,0 +1,68 @@
+# lfs setstripe -N -E 256K -L mdt -E 2M -c 1 -p flash -S 1M  -E eof -S 4M -c 4 -p disk --component-flags=prefer -N -c 4 -S 1M -p flash mirpfldom
+# dd if=/dev/urandom of=./mirpfldom bs=1M count=18
+# lfs getstripe -y mirpfldom
+lcm_layout_gen:    7
+lcm_mirror_count:  2
+lcm_entry_count:   4
+components:
+  - lcme_id:             65537
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   262144
+    sub_layout:
+      lmm_stripe_count:  0
+      lmm_stripe_size:   262144
+      lmm_pattern:       mdt
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 0
+      lmm_pool:          disk
+  - lcme_id:             65538
+    lcme_mirror_id:      1
+    lcme_flags:          init
+    lcme_extent.e_start: 262144
+    lcme_extent.e_end:   2097152
+    sub_layout:
+      lmm_stripe_count:  1
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 3
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 3
+        l_fid:     0x3400088d1:0xb23430:0x0
+  - lcme_id:             65539
+    lcme_mirror_id:      1
+    lcme_flags:          init,prefer
+    lcme_extent.e_start: 2097152
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  2
+      lmm_stripe_size:   4194304
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 0
+      lmm_pool:          disk
+      lmm_objects:
+      - l_ost_idx: 0
+        l_fid:     0x280007160:0x7166f5:0x0
+      - l_ost_idx: 1
+        l_fid:     0x2c00061c0:0xa7ab5b:0x0
+  - lcme_id:             131076
+    lcme_mirror_id:      2
+    lcme_flags:          init,stale
+    lcme_extent.e_start: 0
+    lcme_extent.e_end:   EOF
+    sub_layout:
+      lmm_stripe_count:  2
+      lmm_stripe_size:   1048576
+      lmm_pattern:       raid0
+      lmm_layout_gen:    0
+      lmm_stripe_offset: 3
+      lmm_pool:          flash
+      lmm_objects:
+      - l_ost_idx: 3
+        l_fid:     0x3400088d1:0xb23371:0x0
+      - l_ost_idx: 2
+        l_fid:     0x30000b7b0:0xb16ab1:0x0
