@@ -2,7 +2,7 @@
 Graphically display the layout of a Lustre file.
 Generate your file's layout YAML using `lfs getstripe -y <filename> > <filename.yaml>`
 Run this code to:
-- produce cleaned-up, valid, consistent YAML (which `lfs getstripe -y` does not produce)
+- produce a cleaner, consistent, mirror-based YAML
 - generate a jpg of the layout
 
 Usage:
