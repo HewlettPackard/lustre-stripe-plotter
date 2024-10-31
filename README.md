@@ -20,3 +20,8 @@ Some notes:
   
 Example of mirrored DoM PFL file:
   ![mirrored_pfl_orig](examples/mirpfldom.jpg)
+
+## Install
+It's just this python script, but you'll need some other python packages:
+
+`pip install --upgrade numpy matplotlib seaborn yaml scipy`
